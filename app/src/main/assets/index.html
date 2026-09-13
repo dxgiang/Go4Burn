@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Go4Burn</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ================= 1. Man hinh mo dau ================= -->
+<div id="screen-welcome" class="screen active splash-bg">
+    <div class="splash-center">
+        <img src="assets/icons/logo.png" alt="Logo" class="splash-logo" />
+        <h1 class="brand-title">GO<span>4</span>BURN</h1>
+    </div>
+    <div class="splash-buttons">
+        <button class="btn btn-secondary" onclick="navigateTo('screen-register')">Đăng ký</button>
+        <button class="btn btn-primary" onclick="navigateTo('screen-login')">Đăng nhập</button>
+    </div>
+</div>
+
+<!-- ================= 2. Man hinh dang nhap ================= -->
+<div id="screen-login" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title">Xin chào</h2>
+        <p class="auth-subtitle">Chào mừng bạn đã sử dụng Go4Burn</p>
+
+        <form onsubmit="event.preventDefault();" class="auth-form">
+            <div class="form-group">
+                <input type="email" id="login-email" class="form-input" placeholder="Vui lòng nhập địa chỉ email" />
+            </div>
+            <div class="form-group password-group">
+                <input type="password" id="login-password" class="form-input" placeholder="Vui lòng nhập mật khẩu" />
+                <img src="assets/icons/ic_eye.png" alt="Toggle" class="input-icon-right" onclick="togglePassword('login-password')" />
+            </div>
+            <div class="forgot-link-wrap">
+                <span class="link-text" onclick="navigateTo('screen-forgot-password')">Quên mật khẩu?</span>
+            </div>
+
+            <button class="btn btn-success btn-block" onclick="navigateTo('screen-home')">Đăng nhập</button>
+            <button class="btn btn-sky btn-block mt-2" onclick="navigateTo('screen-register')">Tạo tài khoản mới</button>
+        </form>
+
+        <div class="auth-terms">
+            <span class="bullet">•</span> Vui lòng đọc và đồng ý với <b>thoả thuận người dùng</b> và <b>chính sách bảo mật</b>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 3. Man hinh dang ky ================= -->
+<div id="screen-register" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title">Tạo tài khoản mới</h2>
+        <p class="auth-subtitle">Vui lòng nhập địa chỉ email có thể liên hệ với bạn</p>
+
+        <form onsubmit="event.preventDefault();" class="auth-form">
+            <div class="form-group">
+                <input type="email" id="register-email" class="form-input" placeholder="Vui lòng nhập địa chỉ email" />
+            </div>
+
+            <button class="btn btn-success btn-block" onclick="navigateTo('screen-create-password')">Tiếp tục</button>
+            <button class="btn btn-sky btn-block mt-2" onclick="navigateTo('screen-login')">Đã có tài khoản?</button>
+        </form>
+
+        <div class="auth-terms">
+            <span class="bullet">•</span> Vui lòng đọc và đồng ý với <b>thoả thuận người dùng</b> và <b>chính sách bảo mật</b>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 4. Man hinh dat mat khau ================= -->
+<div id="screen-create-password" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title">Đặt mật khẩu</h2>
+        <p class="auth-subtitle">Mật khẩu phải có ít nhất 6 ký tự và phải bao gồm chữ cái và số</p>
+
+        <form onsubmit="event.preventDefault();" class="auth-form">
+            <div class="form-group password-group">
+                <input type="password" id="new-password" class="form-input" placeholder="Vui lòng nhập mật khẩu" />
+                <img src="assets/icons/ic_eye.png" alt="Toggle" class="input-icon-right" onclick="togglePassword('new-password')" />
+            </div>
+
+            <button class="btn btn-success btn-block mt-4" onclick="navigateTo('screen-user-info')">Tiếp tục</button>
+        </form>
+    </div>
+</div>
+
+<!-- ================= 4.1 Man hinh dat lai mat khau ================= -->
+<div id="screen-edit-password" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title">Đặt lại mật khẩu</h2>
+        <p class="auth-subtitle">Mật khẩu phải có ít nhất 6 ký tự và phải bao gồm chữ cái và số</p>
+
+        <form onsubmit="event.preventDefault();" class="auth-form">
+            <div class="form-group password-group">
+                <input type="password" id="edit-password" class="form-input" placeholder="Vui lòng nhập mật khẩu mới" />
+                <img src="assets/icons/ic_eye.png" alt="Toggle" class="input-icon-right" onclick="togglePassword('new-password')" />
+            </div>
+
+            <button class="btn btn-success btn-block mt-4" onclick="navigateTo('screen-home')">Tiếp tục</button>
+        </form>
+    </div>
+</div>
+
+<!-- ================= 5. Man hinh quen mat khau ================= -->
+<div id="screen-forgot-password" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title">Quên mật khẩu</h2>
+        <p class="auth-subtitle">Vui lòng nhập địa chỉ email khôi phục</p>
+
+        <form onsubmit="event.preventDefault();" class="auth-form">
+            <div class="form-group">
+                <input type="email" id="forgot-email" class="form-input" placeholder="Vui lòng nhập địa chỉ email" />
+            </div>
+
+            <button class="btn btn-success btn-block" onclick="navigateTo('screen-verify-code')">Tiếp tục</button>
+            <button class="btn btn-sky btn-block mt-2" onclick="navigateTo('screen-login')">Đăng nhập?</button>
+        </form>
+
+        <div class="auth-terms">
+            <span class="bullet">•</span> Vui lòng đọc và đồng ý với <b>thoả thuận người dùng</b> và <b>chính sách bảo mật</b>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 6. Man hinh xac minh ================= -->
+<div id="screen-verify-code" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title">Xác minh</h2>
+        <p class="auth-subtitle">Vui lòng nhập mã xác minh</p>
+
+        <form onsubmit="event.preventDefault();" class="auth-form">
+            <div class="form-group">
+                <input type="text" id="verify-code" class="form-input" placeholder="Vui lòng nhập mã xác minh" />
+            </div>
+
+            <button class="btn btn-success btn-block mt-3" onclick="navigateTo('screen-edit-password')">Tiếp tục</button>
+        </form>
+
+        <div class="auth-terms">
+            <span class="bullet">•</span> Vui lòng đọc và đồng ý với <b>thoả thuận người dùng</b> và <b>chính sách bảo mật</b>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 7. Man hinh nhap thong tin ca nhan ================= -->
+<div id="screen-user-info" class="screen">
+    <div class="auth-header">
+        <div class="auth-logo-row">
+            <img src="assets/icons/logo.png" alt="Logo" class="auth-logo" />
+            <span class="brand-header-text">GO<span>4</span>BURN</span>
+        </div>
+    </div>
+    <div class="auth-card">
+        <h2 class="auth-title text-center">Hãy cho chúng tôi biết về bạn</h2>
+
+        <div class="gender-selection">
+            <div class="gender-item selected" id="gender-male" onclick="selectGender('male')">
+                <img src="assets/icons/avatar_male.png" alt="Nam" class="avatar-gender" />
+                <span>Nam</span>
+            </div>
+            <div class="gender-item" id="gender-female" onclick="selectGender('female')">
+                <img src="assets/icons/avatar_female.png" alt="Nữ" class="avatar-gender" />
+                <span>Nữ</span>
+            </div>
+        </div>
+
+        <div class="info-form">
+            <div class="info-row">
+                <label>Ngày sinh:</label>
+                <input type="text" id="setup-dob" placeholder="DD/MM/YYYY" class="info-input text-right" />
+            </div>
+            <div class="info-row">
+                <label>Chiều cao:</label>
+                <div class="input-with-unit">
+                    <input type="number" id="setup-height" class="info-input-short" placeholder="" />
+                    <span class="unit">cm</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <label>Cân nặng:</label>
+                <div class="input-with-unit">
+                    <input type="number" id="setup-weight" class="info-input-short" placeholder="" />
+                    <span class="unit">kg</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-success btn-block mt-4" onclick="navigateTo('screen-home')">Tiếp tục</button>
+    </div>
+</div>
+
+<!-- ================= 8. Man hinh chinh(Hom nay) ================= -->
+<div id="screen-home" class="screen main-app-screen">
+    <div class="main-top-bar">
+        <div class="brand-logo-small">GO<span>4</span>BURN</div>
+    </div>
+
+    <div class="greeting-section">
+        <h3 class="user-greeting">Chào buổi sáng, <span id="home-username">name</span></h3>
+        <p class="greeting-sub">Chúc bạn một ngày tốt lành</p>
+    </div>
+
+    <!-- Vong tron buoc chan -->
+    <div class="card-white step-circle-card">
+        <div class="step-circle-outer">
+            <svg class="progress-ring" width="160" height="160">
+                <circle class="progress-ring__background" stroke="#e0e0e0" stroke-width="12" fill="transparent" r="68" cx="80" cy="80"/>
+                <circle id="home-step-circle" class="progress-ring__circle" stroke="#00d68f" stroke-width="12" stroke-linecap="round" fill="transparent" r="68" cx="80" cy="80"/>
+            </svg>
+            <div class="circle-content">
+                <img src="assets/icons/ic_footstep.png" alt="Bước chân" class="footstep-icon" />
+                <span class="step-count" id="home-steps">--</span>
+                <span class="step-label">Bước</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- card chi so phu -->
+    <div class="stats-cards-row">
+        <div class="stat-card">
+            <span class="stat-val" id="home-calories">--</span>
+            <span class="stat-lbl">Calo</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-val" id="home-active-mins">--</span>
+            <span class="stat-lbl">Phút vận động</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-val" id="home-distance">--</span>
+            <span class="stat-lbl">Km</span>
+        </div>
+    </div>
+
+    <!-- check-in 7 ngay trong tuan -->
+    <div class="week-checkin-row">
+        <div class="check-day"><div class="circle-icon cross" id="day-cn">✕</div><span>CN</span></div>
+        <div class="check-day"><div class="circle-icon check" id="day-t2">✓</div><span>T2</span></div>
+        <div class="check-day"><div class="circle-icon check" id="day-t3">✓</div><span>T3</span></div>
+        <div class="check-day"><div class="circle-icon check" id="day-t4">✓</div><span>T4</span></div>
+        <div class="check-day"><div class="circle-icon cross" id="day-t5">✕</div><span>T5</span></div>
+        <div class="check-day"><div class="circle-icon check" id="day-t6">✓</div><span>T6</span></div>
+        <div class="check-day"><div class="circle-icon check" id="day-t7">✓</div><span>T7</span></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="navigateTo('screen-home')">
+            <img src="assets/icons/ic_home_active.png" alt="Home" />
+            <span>Hôm nay</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('screen-analysis')">
+            <img src="assets/icons/ic_analysis.png" alt="Analysis" />
+            <span>Phân tích</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('screen-profile')">
+            <img src="assets/icons/ic_profile.png" alt="Profile" />
+            <span>Hồ sơ</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 9. Man hinh phan tich ================= -->
+<div id="screen-analysis" class="screen main-app-screen">
+    <div class="main-top-bar">
+        <div class="brand-logo-small">GO<span>4</span>BURN</div>
+    </div>
+
+    <!-- so do phan tich -->
+    <div class="card-white chart-card">
+        <h3 class="chart-card-title">Sơ đồ cột phân tích bước chân(tuần)</h3>
+        <div class="chart-placeholder" id="weekly-chart-container">
+            <!-- =)))) chart -->
+        </div>
+    </div>
+
+    <!-- 2 card ket qua -->
+    <div class="two-card-row">
+        <div class="small-white-card">
+            <span class="card-large-text text-green" id="analysis-status">--</span>
+            <span class="card-bottom-sub">Trạng thái</span>
+        </div>
+        <div class="small-white-card">
+            <span class="card-large-text text-green" id="analysis-score">--/--</span>
+            <span class="card-bottom-sub">Điểm</span>
+        </div>
+    </div>
+
+    <!-- Thong ke 7 ngay qua -->
+    <div class="card-white summary-card">
+        <h4 class="summary-title">Dữ liệu 7 ngày qua</h4>
+        <div class="summary-item">
+            <span>Số bước đã đi :</span>
+            <strong id="summary-steps">--</strong>
+        </div>
+        <div class="summary-item">
+            <span>Calo đã tiêu thụ:</span>
+            <strong id="summary-calories">--</strong>
+        </div>
+        <div class="summary-item">
+            <span>Thời gian hoạt động(phút):</span>
+            <strong id="summary-minutes">--</strong>
+        </div>
+        <div class="summary-item">
+            <span>Quãng đường di chuyển(km):</span>
+            <strong id="summary-distance">--</strong>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="navigateTo('screen-home')">
+            <img src="assets/icons/ic_home.png" alt="Home" />
+            <span>Hôm nay</span>
+        </div>
+        <div class="nav-item active" onclick="navigateTo('screen-analysis')">
+            <img src="assets/icons/ic_analysis_active.png" alt="Analysis" />
+            <span>Phân tích</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('screen-profile')">
+            <img src="assets/icons/ic_profile.png" alt="Profile" />
+            <span>Hồ sơ</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 10. Man hinh ho so ================= -->
+<div id="screen-profile" class="screen main-app-screen">
+    <div class="main-top-bar header-with-icon">
+        <div class="brand-logo-small">GO<span>4</span>BURN</div>
+        <img src="assets/icons/ic_settings.png" alt="Settings" class="top-nav-icon" onclick="navigateTo('screen-settings')" />
+    </div>
+
+    <h2 class="profile-heading">Hồ sơ người dùng</h2>
+
+    <div class="profile-user-card">
+        <img src="assets/icons/avatar_user.png" alt="User Avatar" class="profile-avatar" />
+        <h3 class="profile-name" id="profile-name">--</h3>
+        <p class="profile-email" id="profile-email">--</p>
+    </div>
+
+    <div class="card-white profile-detail-card">
+        <div class="profile-row">
+            <span class="row-label">Giới tính:</span>
+            <span class="row-val" id="profile-gender">Nam &nbsp;&nbsp; Nữ</span>
+        </div>
+        <div class="profile-row">
+            <span class="row-label">Mục tiêu:</span>
+            <span class="row-val"><b id="profile-goal-steps">--</b> Bước</span>
+        </div>
+        <div class="profile-row">
+            <span class="row-label">Ngày sinh:</span>
+            <span class="row-val" id="profile-dob">--/--/----</span>
+        </div>
+        <div class="profile-row">
+            <span class="row-label">Chiều cao:</span>
+            <span class="row-val"><b id="profile-height">--</b> cm</span>
+        </div>
+        <div class="profile-row">
+            <span class="row-label">Cân nặng:</span>
+            <span class="row-val"><b id="profile-weight">--</b> kg</span>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="navigateTo('screen-home')">
+            <img src="assets/icons/ic_home.png" alt="Home" />
+            <span>Hôm nay</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('screen-analysis')">
+            <img src="assets/icons/ic_analysis.png" alt="Analysis" />
+            <span>Phân tích</span>
+        </div>
+        <div class="nav-item active" onclick="navigateTo('screen-profile')">
+            <img src="assets/icons/ic_profile_active.png" alt="Profile" />
+            <span>Hồ sơ</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 11. Man hinh cai dat ================= -->
+<div id="screen-settings" class="screen main-app-screen">
+    <div class="settings-top-bar">
+        <img src="assets/icons/ic_back.png" alt="Back" class="back-btn" onclick="navigateTo('screen-profile')" />
+        <h2 class="settings-title">Cài đặt</h2>
+    </div>
+
+    <div class="card-white settings-card">
+        <!-- thong bao -->
+        <div class="settings-item">
+            <div class="settings-item-left">
+                <img src="assets/icons/ic_bell.png" alt="Bell" class="setting-icon" />
+                <span>Thông báo</span>
+            </div>
+            <div class="settings-item-right">
+                <label class="switch">
+                    <input type="checkbox" id="setting-toggle-notif" checked />
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- clear cache -->
+        <div class="settings-item">
+            <div class="settings-item-left">
+                <img src="assets/icons/ic_broom.png" alt="Clear Cache" class="setting-icon" />
+                <span>Xoá bộ nhớ đệm</span>
+            </div>
+            <div class="settings-item-right">
+                <span class="cache-size" id="setting-cache-size">--</span>
+                <span class="clear-action" onclick="clearCache()">Clear</span>
+            </div>
+        </div>
+
+        <!-- chieu cao -->
+        <div class="settings-item">
+            <div class="settings-item-left">
+                <img src="assets/icons/ic_height.png" alt="Height" class="setting-icon" />
+                <span>Chiều cao</span>
+            </div>
+            <div class="settings-item-right">
+                <span class="unit-toggle selected" id="unit-m">m</span>
+                <span class="unit-toggle" id="unit-cm">cm</span>
+            </div>
+        </div>
+
+        <!-- can nang -->
+        <div class="settings-item">
+            <div class="settings-item-left">
+                <img src="assets/icons/ic_weight.png" alt="Weight" class="setting-icon" />
+                <span>Cân nặng</span>
+            </div>
+            <div class="settings-item-right">
+                <span class="unit-toggle selected" id="unit-kg">kg</span>
+                <span class="unit-toggle" id="unit-lb">lb</span>
+            </div>
+        </div>
+
+        <!-- Nut dang xuat-->
+        <button class="btn btn-danger btn-block mt-4" onclick="navigateTo('screen-welcome')">Đăng xuất</button>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
