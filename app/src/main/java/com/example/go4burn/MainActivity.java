@@ -1,4 +1,4 @@
-package com.example.go4burn; // Thay bằng package name của bạn
+package com.example.go4burn;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
